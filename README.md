@@ -10,5 +10,5 @@
 
 
 ## 前端以及后端所用语言
-+前端构建是纯html+css+JavaScript，没有使用任何例如Vue的框架
-+后端使用Python3的Flask包，所以HTML模板所使用的是jinjia2
++ 前端构建是纯html+css+JavaScript，没有使用任何例如Vue的框架  
++ 后端使用Python3的Flask包，所以HTML模板所使用的是jinjia2  
