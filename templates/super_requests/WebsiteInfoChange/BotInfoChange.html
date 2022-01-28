@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>出云宫子bot——超管界面</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.staticfile.org/jquery/3.6.0/jquery.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".SubmitButton").click(function () {
+                var botName = $("#BotName").val()
+                var botRelease = $("#BotRelease").val()
+                var botUpdated = $("#LastUpdate").val()
+                $.post("/ChangeWebsiteInfo", {
+                    changeType: "mainInfo",
+                    BotName: botName,
+                    botRelease: botRelease,
+                    botUpdated: botUpdated
+                }, function (data) {
+                    $(".Tips").text(data["description"]).fadeIn("fast").delay(1000).fadeOut()
+                })
+            })
+        })
+    </script>
+</head>
+
+<body>
+    {% include '/MenuTemplates/SuperusersMenu.html' %}
+
+    <div class="FunctionSubmitTotal">
+        <div class="SubmitBackground"></div>
+        <div class="SingleFunctionForm" id="changeForm">
+            <h1>Bot基本信息修改</h1>
+            <span>Bot名字：</span><input id="BotName" type="text" value="{{info['botName']}}"><br>
+            <span>Bot版本：</span><input id="BotRelease" type="text" value="{{info['botRelease']}}"><br>
+            <span>上次更新时间：</span><input id="LastUpdate" type="text" value="{{info['lastUpdate']}}"><br>
+            <p class="Tips" style="color: red;text-align: center;display: none;">一条提示</p>
+            <button type="button" class="SubmitButton">点击提交</button>
+        </div>
+    </div>
+</body>
+
+</html>

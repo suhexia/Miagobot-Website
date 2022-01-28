@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>出云宫子bot——超管界面</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.staticfile.org/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#DailySetupSubmit").click(function () {
+                var InputUserid = $("#DailyUserid").val()
+                var InputSetDay = $("#DailyTheDay").val()
+                var InputAllSignDay = $("#DailyAllDay").val()
+                var InputContinueSignDay = $("#DailyContinueDay").val()
+                if (InputUserid == "") {
+                    $("#DailySetupError").text("请输入你要修改的用户QQ！").show()
+                }
+                else if (InputSetDay == InputAllSignDay == InputContinueSignDay == "") {
+                    $("#DailySetupError").text("请至少选择一个项进行修改！").show()
+                }
+                else {
+                    $.post("/Set_DailySign_info", {
+                        user_id: $("input[name='user_id']").val(),
+                        the_day: $("input[name='the_day']").val(),
+                        Sign_AllDay: $("input[name='Sign_AllDay']").val(),
+                        Sign_Continue_day: $("input[name='Sign_Continue_day']").val()
+                    }, function (data) {
+                        $("#DailySetupError").text(data["description"]).show()
+                    })
+                }
+            })
+        })
+    </script>
+</head>
+
+<body>
+    {% include '/MenuTemplates/SuperusersMenu.html' %}
+    <div class="FunctionSubmitTotal">
+        <div class="SubmitBackground"></div>
+        <div class="SingleFunctionForm hide" id="FunctionDailySetup">
+            <h1>盖印章数据修改（单次只能填写一个！否则按第一个算）</h1>
+            <div class="ChangeSignUp">
+                <span>需要修改的用户QQ：</span>
+                <input type="text" name="user_id" id="DailyUserid"><br>
+                <span>设置上次签到日期（用于检测当日是否签到）：</span>
+                <input type="date" name="the_day" id="DailyTheDay"><br>
+                <span>设置总签到时间：</span>
+                <input type="number" name="Sign_AllDay" id="DailyAllDay"><br>
+                <span>设置连续签到时间：</span>
+                <input type="number" name="Sign_Continue_day" id="DailyContinueDay"><br>
+                <p class="ErrorText" id="DailySetupError" style="color: red;display: none;">请求错误</p>
+                <button type="button" id="DailySetupSubmit">提交</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

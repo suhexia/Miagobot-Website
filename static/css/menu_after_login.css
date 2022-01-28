@@ -1,0 +1,85 @@
+html,body { height: 100%;margin: 0;padding: 0}
+
+.TotalDiv{
+    position: absolute;
+    height: 100%; 
+    width: 100%;
+
+    background: url("/static/back.jpg");
+    background-repeat: repeat-y;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    overflow-y: scroll;
+}
+
+.WebsiteMain{
+    height: 100%;
+    width: 100%;
+}
+
+.Menu_ul li{
+    float: right;
+}
+
+.Title_menu {
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    height: 40%;
+    overflow: hidden;
+}
+
+
+#jump_tomain{
+    position: absolute;
+    left: 5%;
+    font-size: 30px;
+}
+
+#Personal_info{
+    position: absolute;
+    left: 15%;
+    font-size: 30px;
+}
+
+#jump_reward{
+    position: absolute;
+    left: 30%;
+    font-size: 30px;
+}
+
+
+#jump_banlist{
+    position: absolute;
+    left: 45%;
+    font-size: 30px;
+}
+
+.DownPanal{
+    position: absolute;
+    left: 70%;
+    font-size: 30px;
+}
+
+.panal{
+    position: absolute;
+    margin-top: 40px;
+
+    height: 300px;
+    width: 200px;
+    font-size: 30px;
+
+    text-align: center;
+    background-color: whitesmoke;
+    border-radius: 10px;
+    display: none;
+}
+#panal dt{
+    padding-bottom: 10px;
+}
+
+#longout{
+    position: absolute;
+    left: 85%;
+    font-size: 30px;
+}

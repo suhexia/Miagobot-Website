@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>出云宫子bot——登录界面</title>
+    <meta lang="zh">
+    <meta charset="utf-8">
+    <script src="https://cdn.staticfile.org/jquery/3.6.0/jquery.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="/static/css/status_dock.css">
+    <script type="text/javascript" src="/static/JavaScript/top_menu_function.js"></script>
+    <style>
+        body,
+        html {
+            height: 100%;
+            padding: 0px;
+            margin: 0px;
+        }
+
+        .TotalDiv {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+
+            background: url("/static/back.jpg");
+            background-repeat: repeat-y;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+            overflow: hidden;
+        }
+
+        .LoginWindow {
+            position: relative;
+            top: 25%;
+            left: 15%;
+
+            background-color: white;
+            border-radius: 20px;
+            height: 500px;
+            width: 900px;
+        }
+
+        #LoginImg {
+            position: absolute;
+            left: 5%;
+            top: 10%;
+
+            height: 300px;
+            width: auto;
+        }
+
+        .LoginMain {
+            position: absolute;
+            right: 1%;
+            text-align: center;
+            margin: 10%;
+        }
+
+        .LoginMain span:not(#ShowPassword) {
+            font-size: 30px;
+        }
+
+        .LoginMain input {
+            border-radius: 20px;
+            font-size: 20px;
+        }
+
+        #username {
+            transform: translateX(-40px);
+        }
+
+        #LoginSubmit {
+            position: relative;
+            top: 10px;
+            left: 10px;
+
+            height: 50px;
+            width: 100px;
+            border-radius: 10px;
+            background-color: cornflowerblue;
+        }
+
+        #error {
+            color: red;
+            display: none;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            $(".LoginWindow").fadeIn(1000)
+
+            $("#ShowPasswordInput,#ShowPassword").click(function () {
+                if ($("input[name='Password']").attr("type") == "password") {
+                    $("input[name='Password']").attr("type", "text")
+                }
+                else {
+                    $("input[name='Password']").attr("type", "password")
+                }
+            })
+
+            $("#LoginSubmit").click(function () {
+                if ($("input[name='Username']").val() == "" || $("input[name='Password']").val() == "") {
+                    $("#error").text("账号或密码为空，请输入账号密码！").show()
+                }
+                else {
+                    $.post("/return_info", {
+                        Username: $("input[name='Username']").val(),
+                        Password: $("input[name='Password']").val(),
+                    }, function (data) {
+                        if (data["status"] == "error") {
+                            $("#error").text(data["description"]).show()
+                        }
+                        else {
+                            $("form[name='LoginForm']").submit();
+                        }
+                    })
+                }
+            })
+        })
+    </script>
+</head>
+
+</div>
+
+<body>
+    <div class="TotalDiv">
+        {% include '/MenuTemplates/BeforeLogin.html' %}
+
+        <div class="LoginWindow" style="display: none;">
+            <div class="TipsDiv">
+                <img src="/static/LoginForm.gif" id="LoginImg">
+            </div>
+            <div class="LoginMain">
+                <h3>登录以查询更多信息</h3>
+                <form method="post" name="LoginForm" action="/return_info">
+                    <div id="username">
+                        <span>QQ号：</span><input name="Username" type="text"><br>
+                    </div>
+
+                    <div id="password">
+                        <span>密码：</span><input name="Password" type="password">
+                        <span id="ShowPassword">显示密码</span>
+                        <input id="ShowPasswordInput" type="checkbox"><br>
+                    </div>
+                    <p id="error">账号或密码错误，请重新输入！</p>
+                    <button type="button" id="LoginSubmit">登录</button>
+                    <p class="AboutLogin">还没有账号？请<a href="/register">点击注册</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

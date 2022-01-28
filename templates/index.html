@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta lang="zh">
+    <meta charset="utf-8">
+    <title>出云宫子bot——主页</title>
+    <style>
+        body {
+            background-image: url("../static/back.jpg");
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+            background-attachment: fixed;
+        }
+
+        .center_main {
+            position: absolute;
+            text-align: center;
+            top: 20%;
+            left: 40%;
+            opacity: 0;
+        }
+
+        #bot_title {
+            font-size: 50px;
+        }
+
+        #index_botimg {
+            border-radius: 100%;
+        }
+
+        #serch_input {
+            border-radius: 20px;
+            height: 100%;
+            width: 100%;
+        }
+
+        .PoliceCode {
+            position: absolute;
+            bottom: 2%;
+            left: 40%;
+            text-align: center;
+            margin-left: 20px;
+        }
+
+        .textColor {
+            color: black;
+        }
+    </style>
+    <!--引用jQuery-->
+    <script src="https://cdn.staticfile.org/jquery/3.6.0/jquery.min.js"></script>
+    <!--常规的css和js加载-->
+    <script type="text/javascript" src="../static/JavaScript/rotate_img.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".center_main").animate({ opacity: "1" }, "slow")
+
+            $(".textColor").mouseenter(function () {
+                $(this).css({ "color": "blue" })
+            })
+            $(".textColor").mouseleave(function () {
+                $(this).css({ "color": "black" })
+            })
+        })
+        $(window).on("blur", function () {
+            $("title").text("你要离开宫子了吗www？");
+        })
+        $(window).on("focus", function () {
+            $("title").text("欢迎回来！");
+        })
+
+    </script>
+</head>
+
+<body>
+    {% include '/MenuTemplates/BeforeLogin.html' %}
+    <div class="center_main">
+        <img src="../static/index_botimg.jpg" id="index_botimg" onmouseover="transform_img(this.id)"
+            onmouseout="stop_to_transform(this.id)">
+        <h1 id="bot_title">{{BotInfo["botName"]}}</h1>
+        <h3 id="now_version">当前版本:{{BotInfo["botRelease"]}}</h3>
+        <h3 id="last_update">上次更新日期:{{BotInfo["lastUpdate"]}}</h3>
+        <form action="/joke" method="GET">
+            <input type="text" id="serch_input">
+        </form>
+    </div>
+    {% include '/MenuTemplates/live2d.html' %}
+    <div class="PoliceCode">
+        <img src="/static/BeianIcon.png">
+        <a target="_blank" class="textColor"
+            href=""></p>
+            </a>
+        <a href="" class="textColor"></a>
+    </div>
+
+</body>
+
+</html>

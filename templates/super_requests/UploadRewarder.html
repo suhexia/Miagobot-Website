@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>出云宫子bot——超管界面</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.staticfile.org/jquery/3.6.0/jquery.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".submitButton").click(function () {
+                var userNameVal = $("input[name='userName']").val()
+                var RewardVal = $("input[name='rewardCount']").val()
+                var errorText = $(".error")
+                if (userNameVal == "") {
+                    errorText.text("请输入打赏用户的名字").fadeIn().delay(2000).fadeOut()
+                }
+                else if (RewardVal == "") {
+                    errorText.text("请输入打赏用户的打赏金额").fadeIn().delay(2000).fadeOut()
+                }
+                else {
+                    $.post("/UploadRewarder", {
+                        userName:userNameVal,
+                        rewardCount:RewardVal
+                    }, function (data) {
+                        if (data["status"] == "success") {
+                            errorText.text(data["description"]).fadeIn().delay(2000).fadeOut()
+                        }
+
+                    })
+                }
+            })
+
+        })
+    </script>
+</head>
+
+<body>
+    {% include '/MenuTemplates/SuperusersMenu.html' %}
+    <div class="FunctionSubmitTotal">
+        <div class="SubmitBackground"></div>
+        <div class="SingleFunctionForm" id="changeForm">
+            <h1>打赏人员的上传</h1>
+            <span>名字：</span><input type="text" name="userName"><br>
+            <span>打赏金额：</span><input type="number" name="rewardCount"><br>
+            <p class="error" style="display: none;color: red;">请求错误</p>
+            <button type="button" class="submitButton">提交</button>
+        </div>
+    </div>
+</body>
+
+</html>

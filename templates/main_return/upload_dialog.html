@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta lang="zh">
+    <meta charset="utf-8">
+    <title>出云宫子bot——更新日志</title>
+    <style>
+        body {
+            background-image: url("../../static/back.jpg");
+            background-repeat: repeat-y;
+            background-size: 100% 100%;
+            background-attachment: fixed;
+        }
+
+        .title {
+            color: red;
+            font-size: 30px;
+            font-weight: bolder;
+        }
+
+        .Version {
+            position: absolute;
+            top: 5%;
+            font-size: 25px;
+            color: black;
+        }
+
+        .version_text {
+            position: relative;
+            left: -150%;
+            opacity: 0.1;
+
+            margin-bottom: 20px;
+        }
+    </style>
+    <!--引用jQuery-->
+    <script src="https://cdn.staticfile.org/jquery/3.6.0/jquery.min.js"></script>
+    <!--顶部标题栏的css和JavaScript-->
+    <link type="text/css" rel="stylesheet" href="/static/css/status_dock.css">
+    <script type="text/javascript" src="../../static/JavaScript/top_menu_function.js"></script>
+    <script>
+        $(document).ready(function () {
+            //对文字写缓入效果
+            $(".version_text").each(function (index) {
+                $(this).delay(200 * index).animate({ left: "5px" }).animate({ opacity: "1" })
+            })
+        })
+    </script>
+
+</head>
+
+<body>
+    {% include '/MenuTemplates/BeforeLogin.html' %}
+
+    <div class="Version">
+        <div class="version_text">
+            <h2 class="title">Version：1.57（现版本）</h2>
+            1.更新了【FGO抽卡】（指令：圣晶石召唤）和FGO猜从者（指令：猜从者）的数据库，目前已更新至id320莱昂纳多达芬奇【夏日】
+            <br>2.更新了【从者推理】的数据库，目前已经进度已经到了四周年版本
+            <br>3.更新了【PCR抽卡】（指令：pcr转蛋）的数据库，目前已更新至FES栞&初音
+            <br>（因为某些原因，这个也先放到周末更新x）
+            <hr width="1500px">
+        </div>
+
+        <div class="version_text" id="156">
+            <h2 class="title">Version：1.56</h2>
+            1.布丁盖印章功能机制变动，新增连续签到机制和新人奖励机制，
+            <br>注意：在新版本更新后，【盖印章排行】暂时废弃，后面会修
+            <br>2.VIP用户福利扩展：布丁占卜获得奖励增加&布丁探索上线增加
+            <br>3.更新了【pcr半月刊】
+            <br>4.功能【布丁跟我说】修复
+            <br>5.所有抽卡功能逻辑大改，现在使用模拟抽卡或许会更接近游戏内。
+            <br>6.布丁的欢迎语设置中新增了at变量
+            <hr width="1500px">
+        </div>
+
+        <div class="version_text" id="155">
+            <h2 class="title">Version：1.55</h2>
+            1.更新群聊相关功能“爬”，指令为：瓜巴@某某某
+            <br>2.修复了布丁机器人之前公主连结竞技场排名变化播报失灵的问题但是在新版本后，需要重新绑定ID
+            <br>绑定方法为：is.订阅+ID示例：g.订阅1145141919810
+            <br>注意：
+            <br>（1）订阅自动绑定竟技场和公主竟技场双场的播报。
+            <br>（2）接口刚恢复，可能还不太稳定，有问题请及时转告开发者
+            <br>3.布丁商店支持使用存款支付，在现金数量为0时，会自动扣除存款来购买东面。
+            <br>注意：你使用存款支付时，要额外支付物品标价的10%作为手续费
+            <br>4.偷宝石新增每日次数限制（3次）.并且偷宝石逻辅修改。改为耗费1技能点。
+            <br>偷某人200-400随机的宝石。指令也改为偷宝石@xxx
+            <br>5.修复了功能【布丁红包】在未发送情况下就扣费的bug
+            <br>6.布丁银行支持一键存取款功能，指令为存/取钱all
+            <hr width="1500px">
+        </div>
+
+        <div class="version_text" id="154">
+            <h2 class="title">Version：1.54</h2>
+            1.新增功能【布丁红包】
+            <br>2.【布丁探索】单次上限增加至2000次
+            <br>3.涩图功能降价至100宝石每次
+            <br>4.新增功能【pcr活动】。
+            <br>5.（更新预告）【布丁银行】使用功能改善。
+            <hr width="1500px">
+        </div>
+
+        <div class="version_text" id="153">
+            <h2 class="title">Version：1.53</h2>
+            1.修复了【pgr定数查询】的故障
+            <br>2.【排行系统】可查询的排行更多了！具体可以通过查询出云宫子在线文档了解！
+            <br>3.修复了【布丁二维码】的使用故障
+            <br>4.为了防止涩图刷群，新版本获取涩图需要花费【宝石×150】
+            <hr width="1500px">
+        </div>
+
+        <div class="version_text" id="1525">
+            <h2 class="title">Version：1.525</h2>
+            1.【来张涩图】功能的随机涩图进行了防重复处理，新版本出现重复涩图的几率更小了！
+            <hr width="1500px">
+        </div>
+
+        <div class="version_text" id="152">
+            <h2 class="title">Version：1.52</h2>
+            1.通过某种巧妙的方法解除了布丁被禁～言时后台疯狂报错的问题，
+            <br>现在可以通过禁～言布丁来进行布丁的开关机。
+            <br>2.更新了【rank查询】，【FGO活动】等多个游戏攻略相关功能的资料库。
+            <hr width="1500px">
+        </div>
+
+        <div class="version_text" id="151">
+            <h2 class="title">Version：1.51</h2>
+            1. 修复FGO相关功能【从者推理】在多群同时游戏时会错乱播报的问题
+            <br>2.FGO相关功能【从者推理】资料库扩充至id为150的从者
+            <br>3.更新FGO相关功能【猜从者】资料库，新增了id292-311的从者
+            <br>4.更新FGO相关功能【圣晶石十连召唤】资料库，新增了id292-311的从者
+            <br>5.更新了PCR半月刊
+            <br>6.近日会更新PCR相关功能【pcr十连转蛋】资料库，届时会新增从圣学祭至今的卡池。
+            <br>7.完善了布丁工具【布丁翻译】的功能，具体请查询出云宫子使用说明。
+            <hr width="1500px">
+        </div>
+
+        <div class="version_text" id="150">
+            <h2 class="title">Version：1.50</h2>
+            1.FGO相关小游戏【从者推理】
+            <hr width="1500px">
+        </div>
+
+        <div class="version_text" id="149">
+            <h2 class="title">Version：1.49</h2>
+            我们为出云宫子bot加入了二次元模式
+            <br>在群聊中发送指令【加入二次元】，就可以把布丁切换到二次元模式了！
+            <hr width="1500px">
+        </div>
+
+        <div class="version_text" id="148">
+            <h2 class="title">Version：1.48</h2>
+            1.新增功能【arc定数查询】
+            <br>2.修复功能【pgr定数查询】
+            <br>3.更新FGO相关功能【素材速查】
+            <br>4.新增FGO相关功能【素材规划】
+            <br>5.根据Tsugu专栏报告，新增Bangdream相关功能【邦邦活动】
+            <hr width="1500px">
+        </div>
+
+        <div class="version_text" id="147">
+            <h2 class="title">Version：1.47</h2>
+            1.新增功能【pcr半月刊】，发送该指令可以获取pcr半月刊资料。
+            <br>2.修复了几个应该没人发现的bug
+            <hr width="1500px">
+        </div>
+
+        <div class="version_text" id="146">
+            <h2 class="title">Version：1.46</h2>
+            1.入群欢迎语和退群消息可以自定义了！相关指令为【入群语修改帮助】！
+            <br>ps.只有群主/管理员可以设置哦
+            <br>2.猜从者2.0正在开发中！在【反馈群】的小伙伴可以发送【从者推理】来提前体验新的FGO小游戏！
+            <br>由于数据量大，目前只录入了38位从者的信息，我们会在数据进一步扩充后再向全群放开！
+            <hr width="1500px">
+        </div>
+
+        <div class="version_text" id="145">
+            <h2 class="title">Version：1.45</h2>
+            为了方便对布丁机器人和布丁机器人所在群的管理，在1.45版本中，我们新增了指令【超管功能】，
+            <br>可以查看超管功能目录。大部分功能是只有开发者能够使用的，
+            <br>方便调试机器人的功能，而小部分是可以给群主/群管理使用的方便管理群的功能。
+            <hr width="1500px">
+        </div>
+
+        <div class="version_text" id="144">
+            <h2 class="title">Version：1.44</h2>
+            1.修改了上传图片的方式，现在只要直接私聊布丁即可
+            <br>2.随机图片筛选功能实装！指令为【来张杂图/表情包/龙图/涩/图 】（普通二次元图片算杂图）
+            <br>3.修复了迫害功能失灵的问题
+            <hr width="1500px">
+        </div>
+
+        <div class="version_text" id="143">
+            <h2 class="title">Version：1.43</h2>
+            新版本增加了FGO周常规划功能
+            <br>在群内发送指令【获取周常】即可使用！
+            <br>注：该功能由于计算延迟，机器人回复延迟较大，尽请谅解！
+            <hr width="1500px">
+        </div>
+
+        <div class="version_text" id="142">
+            <h2 class="title">Version：1.42</h2>
+            1.改善【我的资料】使用体验
+            <br>2.【pgr定数查询】更新至phigros最新版本（1.6.6）
+            <br>3.处理bug
+            <hr width="1500px">
+        </div>
+
+        <div class="version_text" id="141">
+            <h2 class="title">Version：1.41</h2>
+            1.新增指令【fgo福袋】【pcr福袋】【邦邦福袋】
+            <br>通过输入指令，分别可以进行fgo/pcr/bangdream游戏的福袋抽卡模拟！
+            <br>2.修正了部分文本错误
+            <hr width="1500px">
+        </div>
+
+        <div class="version_text" id="139">
+            <h2 class="title">Version：1.39</h2>
+            1.新增了抽卡功能【邦邦十连招聘】
+            <br>2.新增指令【随机车万】
+            <hr width="1500px">
+        </div>
+
+        <div class="version_text" id="138">
+            <h2 class="title">Version：1.38</h2>
+            迫害功能
+            <br>指令：【@布丁机器人+迫害+@迫害的人+说的话】
+            <br>示例：@布丁机器人迫害@酥和侠和侠惹不起
+            <hr width="1500px">
+        </div>
+
+        <div class="version_text" id="137">
+            <h2 class="title">Version：1.37</h2>
+            新增公主连结竞技场排位变动提示功能，
+            <br>各位用户可以发送指令【jjc订阅+游戏ID】（如：【jjc订阅1145141919810】）来订阅你的竞技场排位信息。
+            <hr width="1500px">
+        </div>
+
+        <div class="version_text" id="136">
+            <h2 class="title">Version：1.36</h2>
+            1.大部分数据（除了储存的图片）移动到了数据库，减少了许多不必要的问题！
+            <br>2.新增了账户自动检测功能，当您的账户不存在时会自动创建，创建账户就此废弃！
+            <br>3.新增【宝石转账】和【存款转账】功能，可以使用【xx转账@xxx 123】转账给你的群友了！
+            <br>3.投喂布丁由【投喂布丁】和【投喂全部布丁】升级为【投喂布丁（数量）】和【投喂布丁all】
+            <br>4.更新了框架，现在使用命令时靠近命令的关键字不用空格了！例如【灵魂冲击@xxx 100】
+            <br>5.储存图片功能为了防止骚扰群友，改变成私聊布丁直接发送（tip：不是好友可能没有回复哦！但图片确实存上了）
+            <hr width="1500px">
+        </div>
+
+        <div class="version_text" id="135">
+            <h2 class="title">Version：1.35</h2>
+            1.新增指令【打赏榜】
+            <br>2.优化了布丁目录
+            <br>3.修复了布丁账户故障的问题
+            <hr width="1500px">
+        </div>
+
+        <div class="version_text" id="134">
+            <h2 class="title">Version：1.34</h2>
+            1.『pcr十连转蛋』和『圣晶石十连召唤』增加了图片显示
+            <br>2.新增指令 『缩写查询 xxx』
+            <hr width="1500px">
+        </div>
+
+        <div class="version_text" id="133">
+            <h2 class="title">Version：1.33</h2>
+            1.新增基于hoshino，由@欧凰欧凰欧 大佬整理并提供的新功能『猜从者』，
+            <br>输入指令，和小伙伴一起猜FGO头像吧！
+            <br>2.『@布丁 在吗』指令新增了三条可能的回复！
+            <hr width="1500px">
+        </div>
+
+        <div class="version_text" id="132">
+            <h2 class="title">Version：1.32</h2>
+            1.新增指令『pgr定数查询』，可以查询音乐游戏《phigros》的歌曲定数yo～
+            <br>2.@布丁 在吗的指令新增了5种可能的回答！
+            <br>3.原神祈愿功能添加了保底机制，但是需要创建布丁账户才能使用该功能了！
+            <hr width="1500px">
+        </div>
+
+        <div class="version_text" id="131">
+            <h2 class="title">Version：1.31</h2>
+            1.布丁探索可以批量化进行了哦nano~ eg：布丁探索 xx（数字）
+            <br>注意：单次上限200次
+            <br>2.bangdream的随机上车功能实装！发送随机上车指令，就可以推随机房间哦！
+            <br>3.随机存图系统升级，现在可以批量存图了！
+            <br>详情清发送【存图系统】
+            <br>4.【二次元图片】和【布丁二维码】引入的新的协议，速度更快，效率更高
+            <br>5.增加了天气查询系统，eg： 布丁天气 城市
+            <hr width="1500px">
+        </div>
+
+        <div class="version_text" id="129">
+            <h2 class="title">Version：1.29</h2>
+            1.添加了取消群自动消息（如图）功能，可以关闭布丁的一日三餐提醒功能
+            <br>2.添加了黑名单功能，使用布丁恶意刷屏的用户将会被拉入黑名单。
+            <hr width="1500px">
+        </div>
+
+        <div class="version_text" id="128">
+            <h2 class="title">Version：1.28</h2>
+            1.新增布丁地下城，通过以宝石为抵押，挑战布丁获得报酬吧！
+            <br>2.布丁攻略库更新！具体指令示意：
+            <br>如：rank查询：查询rank表（12-4）
+            <br>fgo活动：查询fgo活动攻略（白情）
+            <br>更多可以通过指令【布丁攻略查询】来查询
+            <hr width="1500px">
+        </div>
+
+        <div class="version_text" id="127">
+            <h2 class="title">Version：1.27</h2>
+            此次更新增加了自定义词条功能
+            <hr width="1500px">
+        </div>
+
+        <div class="version_text" id="126">
+            <h2 class="title">Version：1.26</h2>
+            更新了存图和随机图片功能！
+            <hr width="1500px">
+        </div>
+
+        <div class="version_text" id="125">
+            <h2 class="title">Version：1.25</h2>
+            我们在抽奖系统中新增了PCR模拟转蛋！
+            <hr width="1500px">
+        </div>
+
+        <div class="version_text" id="124">
+            <h2 class="title">Version：1.24</h2>
+            在新的版本里面，宫子可以存图，
+            <br>并且通过随机图片的指令来记录下群内沙雕的一幕幕哦
+            <hr width="1500px">
+        </div>
+
+        <div class="version_text" id="123">
+            <h2 class="title">Version：1.23</h2>
+            1.宫子苦学了多国语言，现在布丁翻译支持多语言互相翻译啦！
+            <br>2.宫子现在会复读啦，群里出现相同话复读的时候，宫子也会来+1哦
+            <br>3.布丁可以模拟抽卡啦！
+            <hr width="1500px">
+        </div>
+        <div class="version_text" id="122">
+            <h2 class="title">Version：1.22</h2>
+            更新番剧订阅功能
+            <hr width="1500px">
+        </div>
+        <div class="version_text" id="121">
+            <h2 class="title">Version：1.21</h2>
+            1.圣晶石模拟召唤
+            <br>指令:圣晶石十连召唤
+            <br>『已实装』
+            <br>2.公主连接工会战系统
+            <br>『可能会实装』
+            <br>3.B站动态推送
+            <br>『即将实装』
+            <hr width="1500px">
+        </div>
+    </div>
+
+</body>
+
+</html>

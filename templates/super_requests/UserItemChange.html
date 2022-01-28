@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>出云宫子bot——超管界面</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.staticfile.org/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#ItemChangeSubmit").click(function () {
+                var InputUserid = $("#ChangeItemUserid").val()
+                var InputCount = $("#ChangeItemCount").val()
+                if (InputUserid == "") {
+                    $("#ChangeItemError").text("请输入要修改的QQ号！").show()
+                }
+                else if (InputCount == "") {
+                    $("#ChangeItemError").text("请输入要修改的数量！").show()
+                }
+                else {
+                    $.post("/change_item",{
+                        item:$("select[name='item']").val(),
+                        way:$("select[name='way']").val(),
+                        user_id:$("input[name='user_id']").val(),
+                        count:$("input[name='count']").val(),
+                    },function(data){
+                        $("#ChangeItemError").text(data["description"]).show()
+                    })
+                }
+            })
+        })
+    </script>
+</head>
+
+<body>
+    {% include '/MenuTemplates/SuperusersMenu.html' %}
+
+    <div class="FunctionSubmitTotal">
+        <div class="SubmitBackground"></div>
+        <div class="SingleFunctionForm hide" id="FunctionSetItemCount">
+            <h1>物品的修改和添加</h1>
+            <div class="ItemChangeForm">
+                <span>选择物品：</span>
+                <select name="item">
+                    {%for item in all_item%}
+                    <option value="{{item}}">{{item}}</option>
+                    {%endfor%}
+                </select><br>
+                <span>修改方式：</span>
+                <select name="way">
+                    <option value="修改">修改（更改物品的数据）</option>
+                    <option value="增添">增添（在当前基础上增加或减少）</option>
+                </select><br>
+                <span>要修改的用户QQ：</span><input type="text" name="user_id" id="ChangeItemUserid"><br>
+                <span>需要修改或者添加的数据：</span><input type="number" name="count" id="ChangeItemCount"><br>
+                <p class="ErrorText" id="ChangeItemError" style="color: red;display: none;">请求错误</p>
+                <button type="button" id="ItemChangeSubmit">点击提交</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

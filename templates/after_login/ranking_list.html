@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta lang="zh_cn">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>出云宫子bot——排行榜</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        .main_ranking_list {
+            position: absolute;
+            top: 10%;
+            height: 500px;
+            overflow-y: scroll;
+        }
+
+        .clip_div {
+            position: absolute;
+            top: 10%;
+            overflow: hidden;
+        }
+
+        #all_rank {
+            float: left;
+        }
+
+        .Ranking_table {
+            border-color: darkcyan;
+            border-style: groove;
+            border-radius: 10px;
+        }
+    </style>
+    <!--引用JavaScript-->
+    <script src="https://cdn.staticfile.org/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            //修改列表边界，去掉滚动条
+            $(".clip_div").css({
+                "height": $(".main_ranking_list").height(),
+                "width": $(".main_ranking_list").width()
+            })
+
+            $(".main_ranking_list").css({
+                "width": String($(this).width() + 20) + "px"
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <div class="TotalDiv">
+        {% include '/MenuTemplates/AfterLogin.html' %}
+
+        <div class="WebsiteMain">
+            <div class="clip_div">
+                <div class="main_ranking_list">
+                    <div id="all_rank">
+                        <h2 style="color:darksalmon">{{the_item}}的总排行为：</h2>
+                        <table class="Ranking_table" border="5" cellpadding="10">
+                            <thead>
+                                <tr>
+                                    <th>排序</th>
+                                    <th>QQ号</th>
+                                    <th>数量</th>
+                                </tr>
+                            </thead>
+
+                            {% for item in all_item %}
+                            <tbody>
+                                <th>{{item["serial_num"]}}</th>
+                                <th>{{item["user_id"]}}</th>
+                                <th>{{item["count"]}}</th>
+                            </tbody>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include '/MenuTemplates/AfterLoginDialog.html' %}
+</body>
+
+</html>

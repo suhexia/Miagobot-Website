@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>出云宫子bot——注册界面</title>
+    <meta lang="zh">
+    <meta charset="utf-8">
+    <script src="https://cdn.staticfile.org/jquery/3.6.0/jquery.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="/static/css/status_dock.css">
+    <script type="text/javascript" src="/static/JavaScript/top_menu_function.js"></script>
+    <style>
+        body,
+        html {
+            height: 100%;
+            padding: 0px;
+            margin: 0px;
+        }
+
+        .TotalDiv {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+
+            background: url("/static/back.jpg");
+            background-repeat: repeat-y;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+            overflow: hidden;
+        }
+
+        .RegisterWindow {
+            position: relative;
+            top: 25%;
+            left: 15%;
+
+            background-color: white;
+            border-radius: 20px;
+            height: 500px;
+            width: 900px;
+        }
+
+        #RegisterImg {
+            position: absolute;
+            left: 5%;
+            top: 10%;
+
+            height: 300px;
+            width: auto;
+        }
+
+        .RegisterMain {
+            position: absolute;
+            right: 1%;
+            text-align: center;
+            margin: 10%;
+        }
+
+        .RegisterMain span:not(#ShowPassword) {
+            font-size: 30px;
+        }
+
+        .RegisterMain input {
+            border-radius: 20px;
+            font-size: 20px;
+        }
+
+        #username {
+            transform: translateX(-40px);
+        }
+
+        #RegisterSubmit {
+            position: relative;
+            top: 10px;
+            left: 10px;
+
+            height: 50px;
+            width: 100px;
+            border-radius: 10px;
+            background-color: cornflowerblue;
+        }
+
+        #error {
+            color: red;
+            display: none;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            $(".RegisterWindow").fadeIn()
+
+            $("#ShowPasswordInput,#ShowPassword").click(function () {
+                if ($("input[name='Password']").attr("type") == "password") {
+                    $("input[name='Password']").attr("type", "text")
+                }
+                else {
+                    $("input[name='Password']").attr("type", "password")
+                }
+            })
+
+            $("#RegisterSubmit").click(function(){
+                var code = $("input[name='RegisterCode']").val()
+                var password = $("input[name='Password']").val()
+                if (code == ""){
+                    $("#error").text("请输入你的注册码！").fadeIn()
+                }
+                else if (code.length != 10){
+                    $("#error").text("请输入十位的正确注册码！").fadeIn()
+                }
+                else if (password == ""){
+                    $("#error").text("请输入要输入的密码！").fadeIn()
+                }
+                else{
+                    $.post("/UserRegistering",{
+                        "RegisterCode":code,
+                        "Password":password
+                    },function(data){
+                        if (data["status"] == "success"){
+                            alert("注册成功，正在返回登录界面。")
+                            $(window).attr('location','/login')
+                        }
+                        else{
+                            $("#error").text(data["description"]).fadeIn()
+                        }
+                    })
+                }
+            })
+        })
+    </script>
+</head>
+
+</div>
+
+<body>
+    <div class="TotalDiv">
+        {% include '/MenuTemplates/BeforeLogin.html' %}
+
+        <div class="RegisterWindow" style="display: none;">
+            <div class="TipsDiv">
+                <img src="/static/LoginForm.gif" id="RegisterImg">
+            </div>
+            
+            <div class="RegisterMain">
+                <h3>来注册一个新账号吧~</h3>
+                <div class="RegisterForm">
+                    <div id="username">
+                        <span>注册码：</span><input name="RegisterCode" type="text"><br>
+                    </div>
+
+                    <div id="password">
+                        <span>密码：</span><input name="Password" type="password">
+                        <span id="ShowPassword">显示密码</span>
+                        <input id="ShowPasswordInput" type="checkbox"><br>
+                    </div>
+
+                    <p id="error">请求错误</p>
+                    <button type="button" id="RegisterSubmit">注册</button>
+                    <p class="AboutRegister">已有账号？立即<a href="/login">登录</a></p>
+                    <p style="color: red;">注册码获取：在群中【@出云宫子bot 申请注册码】</p>
+                    <p style="color: red;">或私聊宫子【申请注册码】即可获取</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

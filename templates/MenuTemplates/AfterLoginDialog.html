@@ -1,0 +1,22 @@
+<script type="text/javascript" src="/static/JavaScript/DialogForm.js"></script>
+<link rel="stylesheet" type="text/css" href="/static/css/DialogStyle.css">
+
+<div class="SuperCheckDialog">
+    <form name="jump_to_SuperFunction" action="/superusers/SuperMenu" method="POST">
+        <h3>请输入超管密码</h3>
+        <span>超管密码：</span>
+        <input name="super_pass" type="text"><br>
+        <span id="block_text" style="display: none;color: red;">请输入超管密码！</span>
+        <button id="Superusers_Submit" type="button">确定</button>
+    </form>
+</div>
+
+<div class="GroupFunctionDialog">
+    <form name="jump_to_FunctionManage" action="/group_functions" method="POST">
+        <h3>请输入群管理密码以及授权码</h3>
+        <span>群管理密码：</span><input name="Group_password" type="text">
+        <span><br>群授权码：</span><input name="Accept_code" type="text"><br>
+        <span id="FunctionBlockText" style="display: none;color: red;">请输入群管理密码和授权码！</span>
+        <button id="GroupFunction_Submit" type="button">确定</button>
+    </form>
+</div>

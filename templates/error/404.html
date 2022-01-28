@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta lang="zh">
+    <meta charset="utf-8">
+    <title>出云宫子bot——404界面</title>
+    <style>
+        #img404 {
+            border-radius: 100%;
+            height: 350px;
+            width: 350px;
+        }
+
+        #main_div {
+            font-size: 40px;
+            text-align: center;
+            position: absolute;
+            top: 1%;
+            left: 20%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main_div">
+        <img src="/static/404_img.jpg" id="img404" onmouseover="transform_img()" 
+        onmouseout="when_moveout()">
+        <h1>宫子找不到该界面nano！<br>请检查你的请求地址是否错误！</h1>
+    </div>
+    <script>
+        var n = 0;
+        var trans_int = "";
+        function transform_img() {
+            trans_int = setInterval(function () {
+                n += 5;
+                img_target = document.getElementById("img404");
+                img_target.style.transform = "rotate(" + n + "deg)";
+            }, 10)
+        }
+        function when_moveout() {
+            window.clearInterval(trans_int);
+            img_target = document.getElementById("img404");
+            img_target.style.transform = "rotate(0deg)";
+            n = 0;
+        }
+
+
+    </script>
+</body>
+
+</html>

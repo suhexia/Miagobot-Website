@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta lang="zh">
+    <meta charset="utf-8">
+    <title>出云宫子bot——关于我们</title>
+    <script src="https://cdn.staticfile.org/jquery/3.6.0/jquery.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="/static/css/status_dock.css">
+    <script type="text/javascript" src="/static/JavaScript/top_menu_function.js"></script>
+    <style>
+        body {
+            background-image: url("/static/back.jpg");
+            background-repeat: repeat-y;
+            background-size: 100% 100%;
+            background-attachment: fixed;
+        }
+
+        .introduce {
+            width: 600px;
+            height: 300px;
+
+            position: absolute;
+            left: -50%;
+            opacity: 0.1;
+        }
+
+        .the_text{
+            border-radius: 15px;
+
+            width: 600px;
+            height: 300px;
+
+            font-size: 25px;
+            background-color: navajowhite;
+            padding: 10px;
+
+            overflow-y: scroll;
+        }
+
+        .miagobot_{
+            top: 10%;
+        }
+
+        .about_author{
+            top: 50%;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            var introduce = $(".introduce");
+            introduce.animate({ left: "0px" }, "slow");
+            introduce.animate({ opacity: "1" }, "slow");
+            introduce.animate({ left: "10px" }, "slow");
+        })
+    </script>
+</head>
+
+<body>
+    {% include '/MenuTemplates/BeforeLogin.html' %}
+    
+    <div class="introduce about_author"> <!--作者介绍-->
+        <h1>{{introduce["authorIntroduce"]["title"]}}</h1>
+        <div class="the_text">
+            {%for i in introduce["authorIntroduce"]["description"].split("【aha】") %}
+            <p>{{i}}</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="introduce miagobot_"> <!--bot简介-->
+        <h1>{{introduce["BotIntroduce"]["title"]}}</h1>
+        <div class="the_text">
+            {%for i in introduce["BotIntroduce"]["description"].split("【aha】")  %}
+            <p>{{i}}</p>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+
+</html>

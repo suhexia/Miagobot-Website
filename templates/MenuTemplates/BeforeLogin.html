@@ -1,0 +1,21 @@
+<link rel="stylesheet" type="text/css" href="/static/css/status_dock.css">
+<script type="text/javascript" src="/static/JavaScript/top_menu_function.js"></script>
+<div class="Top_menu">
+    <ul id="jump_button">
+        <li id="jump_main" onclick="jump_to('/index')">主页</li>
+
+        <li id="jump_update" onclick="jump_to('/update_dialog')">更新日志</li>
+
+        <li id="about_us" onclick="jump_to('/about_miagobot')">关于我们</li>
+
+        {% if "username" not in session %}
+        <li id="jump_login" onclick="jump_to('/login')">登录</li>
+        {% else %}
+        <form name="login" method="POST" action="/return_info">
+            <input name="Username" value="{{session['username']}}" type="hidden">
+            <input name="Password" value="{{session['password']}}" type="hidden">
+            <li id="jump_login" onclick="post_url('login')">个人中心</li>
+        </form>
+        {% endif %}
+    </ul>
+</div>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta lang="zh">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>出云宫子bot——群功能管理菜单</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        body {
+            background-image: url("../../static/back.jpg");
+            background-size: 100% 100%;
+            background-repeat: repeat-y;
+            background-attachment: fixed;
+        }
+
+        .All_switch {
+            position: absolute;
+            text-align: center;
+            width: 1300px;
+            top: 25%;
+            left: 15%;
+        }
+
+        .The_Function {
+            display: inline-block;
+            padding: 20px;
+        }
+    </style>
+
+    <!--引用jQuery-->
+    <script src="https://cdn.staticfile.org/jquery/3.6.0/jquery.min.js"></script>
+    <!--引用开关按钮相关的文件-->
+    <link rel="stylesheet" type="text/css" href="../../static/css/honeySwitch.css">
+    <script type="text/javascript" src="../../static/JavaScript/honeySwitch.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $(".switch-on,.switch-off").click(function () {
+                if ($(this).attr("class") == "switch-off") {
+                    $.post("/close_the_function", {
+                        "function_name": $(this).attr("id"),
+                        "group_id": "{{GroupInfo['group_id']}}",
+                        "accept_code": "{{GroupInfo['accept_code']}}"
+                    }, function (data, status) {
+                        console.log(data)
+                    })
+                }
+
+                else if ($(this).attr("class") == "switch-on") {
+                    $.post("/open_the_function", {
+                        "function_name": $(this).attr("id"),
+                        "group_id": "{{GroupInfo['group_id']}}",
+                        "accept_code": "{{GroupInfo['accept_code']}}"
+                    }, function (data, status) {
+                        console.log(data)
+                    })
+                }
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <!--"布丁API":"从者推理":"猜从者":"你说我猜":"抽卡功能":"基础功能":"日常任务":"游戏攻略":
+        "群消息统计":"群禁言":"群通知":"排行榜":"布丁红包":"漂流瓶":"布丁商店and银行":
+        "图库和词库":"布丁翻译":-->
+    <div class="All_switch">
+        <h3>点击开关即可开启/关闭本群的单个功能</h3>
+        <div id="miagobot_api" class="The_Function">
+            <span style="font-size: 25px;">布丁API功能:</span>
+            {% if FunctionStatuds['api'] == "False" %}
+            <span class="switch-off" id="api"></span>
+            {% else %}
+            <span class="switch-on" id="api"></span>
+            {% endif %}
+        </div>
+
+        <div id="inference_avatar" class="The_Function">
+            <span style="font-size: 25px;">从者推理功能：</span>
+            {% if FunctionStatuds['fgo_character_cz'] == "False" %}
+            <span class="switch-off" id="fgo_character_cz"></span>
+            {% else %}
+            <span class="switch-on" id="fgo_character_cz"></span>
+            {% endif %}
+        </div>
+
+        <div id="guess_avatar" class="The_Function">
+            <span style="font-size: 25px;">猜从者功能:</span>
+            {% if FunctionStatuds['fgoguesscz'] == "False" %}
+            <span class="switch-off" id="fgoguesscz"></span>
+            {% else %}
+            <span class="switch-on" id="fgoguesscz"></span>
+            {% endif %}
+        </div>
+
+        <div id="GuessWhatISaid" class="The_Function">
+            <span style="font-size: 25px;">你说我猜功能:</span>
+            {% if FunctionStatuds['guess_what_I_say'] == "False" %}
+            <span class="switch-off" id="guess_what_I_say"></span>
+            {% else %}
+            <span class="switch-on" id="guess_what_I_say"></span>
+            {% endif %}
+        </div>
+        <div id="LuckilyCard" class="The_Function">
+            <span style="font-size: 25px;">各种抽卡功能:</span>
+            {% if FunctionStatuds['luckycard'] == "False" %}
+            <span class="switch-off" id="luckycard"></span>
+            {% else %}
+            <span class="switch-on" id="luckycard"></span>
+            {% endif %}
+        </div>
+        <div id="Buding_Advanture" class="The_Function">
+            <span style="font-size: 25px;">布丁冒险功能:</span>
+            {% if FunctionStatuds['advanture'] == "False" %}
+            <span class="switch-off" id="advanture"></span>
+            {% else %}
+            <span class="switch-on" id="advanture"></span>
+            {% endif %}
+        </div>
+        <div id="base" class="The_Function">
+            <span style="font-size: 25px;">基础功能:</span>
+            {% if FunctionStatuds['bases'] == "False" %}
+            <span class="switch-off" id="bases"></span>
+            {% else %}
+            <span class="switch-on" id="bases"></span>
+            {% endif %}
+        </div>
+        <div id="daily_mission" class="The_Function">
+            <span style="font-size: 25px;">日常任务功能:</span>
+            {% if FunctionStatuds['dailyandmission'] == "False" %}
+            <span class="switch-off" id="dailyandmission"></span>
+            {% else %}
+            <span class="switch-on" id="dailyandmission"></span>
+            {% endif %}
+        </div>
+        <div id="game_helped" class="The_Function">
+            <span style="font-size: 25px;">游戏攻略功能:</span>
+            {% if FunctionStatuds['game_helper'] == "False" %}
+            <span class="switch-off" id="game_helper"></span>
+            {% else %}
+            <span class="switch-on" id="game_helper"></span>
+            {% endif %}
+        </div>
+        <div id="group_message" class="The_Function">
+            <span style="font-size: 25px;">群消息统计功能:</span>
+            {% if FunctionStatuds['group_seeing'] == "False" %}
+            <span class="switch-off" id="group_seeing"></span>
+            {% else %}
+            <span class="switch-on" id="group_seeing"></span>
+            {% endif %}
+        </div>
+        <div id="group_nosay" class="The_Function">
+            <span style="font-size: 25px;">群禁言功能:</span>
+            {% if FunctionStatuds['nomessage'] == "False" %}
+            <span class="switch-off" id="nomessage"></span>
+            {% else %}
+            <span class="switch-on" id="nomessage"></span>
+            {% endif %}
+        </div>
+        <div id="group_notice" class="The_Function">
+            <span style="font-size: 25px;">群通知功能:</span>
+            {% if FunctionStatuds['notice'] == "False" %}
+            <span class="switch-off" id="notice"></span>
+            {% else %}
+            <span class="switch-on" id="notice"></span>
+            {% endif %}
+        </div>
+        <div id="ranklist" class="The_Function">
+            <span style="font-size: 25px;">排行榜功能:</span>
+            {% if FunctionStatuds['RankingList'] == "False" %}
+            <span class="switch-off" id="RankingList"></span>
+            {% else %}
+            <span class="switch-on" id="RankingList"></span>
+            {% endif %}
+        </div>
+        <div id="Buding_Redbag" class="The_Function">
+            <span style="font-size: 25px;">布丁红包功能:</span>
+            {% if FunctionStatuds['RedBag'] == "False" %}
+            <span class="switch-off" id="RedBag"></span>
+            {% else %}
+            <span class="switch-on" id="RedBag"></span>
+            {% endif %}
+        </div>
+        <div id="Bottle_in_sea" class="The_Function">
+            <span style="font-size: 25px;">漂流瓶功能:</span>
+            {% if FunctionStatuds['seabottle'] == "False" %}
+            <span class="switch-off" id="seabottle"></span>
+            {% else %}
+            <span class="switch-on" id="seabottle"></span>
+            {% endif %}
+        </div>
+        <div id="shop&bank" class="The_Function">
+            <span style="font-size: 25px;">银行and商店功能:</span>
+            {% if FunctionStatuds['shopandbank'] == "False" %}
+            <span class="switch-off" id="shopandbank"></span>
+            {% else %}
+            <span class="switch-on" id="shopandbank"></span>
+            {% endif %}
+        </div>
+        <div id="wordbank&imgbank" class="The_Function">
+            <span style="font-size: 25px;">词库和图库功能:</span>
+            {% if FunctionStatuds['textandimagebag'] == "False" %}
+            <span class="switch-off" id="textandimagebag"></span>
+            {% else %}
+            <span class="switch-on" id="textandimagebag"></span>
+            {% endif %}
+        </div>
+        <div id="translator" class="The_Function">
+            <span style="font-size: 25px;">布丁翻译功能:</span>
+            {% if FunctionStatuds['translate'] == "False" %}
+            <span class="switch-off" id="translate"></span>
+            {% else %}
+            <span class="switch-on" id="translate"></span>
+            {% endif %}
+        </div>
+    </div>
+</body>
+
+</html>

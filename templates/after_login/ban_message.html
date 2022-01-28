@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta lang="zh">
+    <title>出云宫子bot——黑名单界面</title>
+    <style>
+        .Group_banlist {
+            float: left;
+            position: absolute;
+            top: 10%;
+            font-size: 25px;
+        }
+
+        .description {
+            opacity: 0.5;
+            text-align: center;
+
+            background-color: cornsilk;
+            width: 400px;
+            height: 500px;
+
+            border-radius: 20px;
+            position: absolute;
+            bottom: 0px;
+            right: 2%;
+        }
+    </style>
+    <!--引用JavaScript-->
+    <script src="https://cdn.staticfile.org/jquery/3.6.0/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+
+        })
+    </script>
+</head>
+
+<body>
+    <div class="TotalDiv">
+        {% include '/MenuTemplates/AfterLogin.html' %}
+
+        <div class="WebsiteMain">
+            <table class="Group_banlist" border="7" cellpadding="3">
+                <caption>数据库中所记录的所有黑名单</caption>
+                <thead>
+                    <tr>
+                        <th>黑名单类型</th>
+                        <th>群名字/用户名</th>
+                        <th>群号/用户QQ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for group in group_ban %}
+                    <tr>
+                        <th style="color: rgb(211, 38, 38);">{{group["type"]}}</th>
+                        <td>{{group["group_name"]}}</td>
+                        <td>{{group["group_id"]}}</td>
+                        {% endfor %}
+                    </tr>
+                </tbody>
+
+                <tbody>
+                    {% for user in user_ban%}
+                    <tr>
+                        <th style="color: rgb(211, 38, 38);">{{user["type"]}}</th>
+                        <td>{{user["user_name"]}}</td>
+                        <td>{{user["user_id"]}}</td>
+                        {% endfor %}
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% include '/MenuTemplates/AfterLoginDialog.html' %}
+    <div class="description">
+        <h2>
+            黑名单注意事项：<br>
+            1.处于群禁言类型的群请尝试【重新禁言后手动解禁】，
+            如仍在黑名单中请联系管理员！<br><br>
+            2.处于群消息频繁类型中的群，意味着本群当日对bot所发送的【指令频率>=30条/min】，
+            该类型黑名单会在【次日的凌晨十二点】解除！<br><br>
+            3.处于用户个人黑名单中的用户，请思考你是否有做过违反使用规则的事
+            （例如：传违法违规/重度色情的图片到图库），如有异议，请联系管理员！
+        </h2>
+    </div>
+</body>
+
+</html>

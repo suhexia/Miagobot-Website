@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>出云宫子bot——个人信息</title>
+    <meta lang="zh">
+    <meta charset="utf-8">
+    <style>
+        table {
+            border-color: orange;
+            border-style: ridge;
+        }
+
+        .all_table {
+            position: absolute;
+            top: 10%;
+        }
+
+        .user_all_item {
+            float: left;
+            font-size: 30px;
+        }
+
+        .ownself_info {
+            float: left;
+            font-size: 30px;
+        }
+
+        th,
+        td {
+            opacity: 0;
+        }
+    </style>
+</head>
+<!--加载jQuery-->
+<script src="https://cdn.staticfile.org/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("th,td").each(function (index) {
+            $(this).delay(50 * index).animate({ opacity: "1" }, "fast")
+        })
+    })
+</script>
+
+<body>
+    <!--看什么看看什么看，有什么好看的，屎山代码而已！！！
+        不会前端，后端玩了玩Node.js玩不明白，然后玩了玩PHP，bug一大堆
+        回来一看，还是Python做后端舒服 ————By酥和侠
+        -->
+    <div class="TotalDiv">
+        {% include '/MenuTemplates/AfterLogin.html' %}
+        <div class="WebsiteMain">
+            <div class="all_table">
+                <table class="user_all_item" border="6" cellpadding="5">
+                    <tr>
+                        <th>宝石数：</th>
+                        <td>{{item_list["宝石"]}}个</td>
+                    </tr>
+                    <tr>
+                        <th>存款数：</th>
+                        <td>{{item_list["存款"]}}个</td>
+                    </tr>
+                    <tr>
+                        <th>探索券数：</th>
+                        <td>{{item_list["探索券"]}}张</td>
+                    </tr>
+                    <tr>
+                        <th>圣迹探索券数：</th>
+                        <td>{{item_list["圣迹探索券"]}}张</td>
+                    </tr>
+                    <tr>
+                        <th>布丁数：</th>
+                        <td>{{item_list["布丁"]}}个</td>
+                    </tr>
+                    <tr>
+                        <th>桶装布丁数：</th>
+                        <td>{{item_list["桶装布丁"]}}个</td>
+                    </tr>
+                    <tr>
+                        <th>南瓜布丁数：</th>
+                        <td>{{item_list["南瓜布丁"]}}个</td>
+                    </tr>
+                    <tr>
+                        <th>龙布丁数：</th>
+                        <td>{{item_list["龙布丁"]}}个</td>
+                    </tr>
+                    <tr>
+                        <th>圣迹之心数：</th>
+                        <td>{{item_list["圣迹之心"]}}个</td>
+                    </tr>
+                    <tr>
+                        <th>技能点：</th>
+                        <td>{{item_list["技能点"]}}点</td>
+                    </tr>
+                    <tr>
+                        <th>瓶子数：</th>
+                        <td>{{item_list["瓶子"]}}个</td>
+                    </tr>
+                    <tr>
+                        <th>渔网数：</th>
+                        <td>{{item_list["渔网"]}}个</td>
+                    </tr>
+                    <tr>
+                        <th>宫子对你的好感度：</th>
+                        <td>{{item_list["好感度"]}}点</td>
+                    </tr>
+                    <tr>
+                        <th>成就：</th>
+                        <td>{{achievement}}</td>
+                    </tr>
+
+                    <table class="ownself_info" border="6" cellpadding="7">
+                        <tr>
+                            <th>用户QQ：</th>
+                            <td>{{session["username"]}}</td>
+                        </tr>
+                        <tr>
+                            <th>用户名：</th>
+                            <td>【暂未开发功能】</td>
+                        </tr>
+                        <tr>
+                            <th>是否为vip：</th>
+                            <td>{{vip_status}}</td>
+                        </tr>
+                        <tr>
+                            <th>今日盖印章情况：</th>
+                            <td>{{is_signup}}</td>
+                        </tr>
+                        <tr>
+                            <th>今日布丁占卜情况：</th>
+                            <td>{{is_zhanbu}}</td>
+                        </tr>
+                    </table>
+                </table>
+            </div>
+        </div>
+    </div>
+    {% include '/MenuTemplates/AfterLoginDialog.html' %}
+</body>
+
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta lang="zh">
+    <meta charset="utf-8">
+    <title>出云宫子bot——超管界面</title>
+    <script src="https://cdn.staticfile.org/jquery/3.6.0/jquery.js"></script>
+    <style>
+        .AboutMiagobot,
+        .AboutAuthor {
+            position: relative;
+            float: left;
+            margin-left: 30px;
+        }
+
+        textarea {
+            border-radius: 20px;
+            font-size: 25px;
+            resize: none;
+            cursor: unset;
+        }
+        #AboutMiagobot::-webkit-scrollbar,#AboutAuthor::-webkit-scrollbar{
+            width: 9px;
+            height: 5px;
+        }
+        
+        #AboutMiagobot::-webkit-scrollbar-track{
+            border-radius: 5px;
+        }
+
+        #AboutMiagobot::-webkit-scrollbar-thumb{
+            border-radius: 5px;
+            background-color: rgb(112, 180, 219);
+        }
+
+        #AboutAuthor::-webkit-scrollbar-thumb{
+            border-radius: 5px;
+            background-color: rgb(235, 233, 122);
+
+        }
+        #AboutAuthor::-webkit-scrollbar-track{
+            border-radius: 5px;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            $(".SubmitText").click(function () {
+                var AboutMiagobotInfo = $("#AboutMiagobot").val().replace(/\n/g, "【aha】")
+                var AboutAuthorInfo = $("#AboutAuthor").val().replace(/\n/g, "【aha】")
+                if (AboutMiagobotInfo == "" || AboutAuthorInfo == ""){
+                    $(".TipsText").text("输入框内容不能为空！").fadeIn("fast").delay(1000).fadeOut()
+                }
+                else{
+                    $.post("/ChangeWebsiteInfo",{
+                        changeType:"introduce",
+                        aboutBotInfo:AboutMiagobotInfo,
+                        aboutAuthorInfo:AboutAuthorInfo
+                    },function(data){
+                        $(".TipsText").text(data["description"]).fadeIn("fast").delay(1000).fadeOut()
+                    })
+                }
+            })
+        })
+    </script>
+</head>
+
+<body>
+    {% include '/MenuTemplates/SuperusersMenu.html' %}
+
+    <div class="FunctionSubmitTotal">
+        <div class="SubmitBackground"></div>
+        <div class="SingleFunctionForm" id="changeForm">
+            <div class="AboutMiagobot">
+                <h1>出云宫子bot的介绍信息修改</h1>
+                <textarea class="MainText" id="AboutMiagobot" rows="10" ,
+                    cols="30">{{introduce["BotIntroduce"]["description"].replace("【aha】","\n")}}</textarea><br>
+
+            </div>
+
+            <div class="AboutAuthor">
+                <h1>出云宫子Bot的历史以及作者信息修改</h1>
+                <textarea class="MainText" id="AboutAuthor" rows="10" ,
+                    cols="30">{{introduce["authorIntroduce"]["description"].replace("【aha】","\n")}}</textarea><br>
+            </div>
+            <p class="TipsText" style="color: red;display: none;">请求提示</p>
+            <button class="SubmitText">点击修改</button>
+        </div>
+    </div>
+</body>
+
+</html>

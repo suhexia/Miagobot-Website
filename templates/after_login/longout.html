@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta lang="zh">
+        <meta charset="utf-8">
+        <title>登出成功</title>
+        <style>
+            .longout_div{
+                position: absolute;
+                top: 30%;
+                left: 30%;
+
+                width: 500px;
+                height: 300px;
+                background-color: burlywood;
+
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="longout_div">
+            <h2>{{longout_state}}，5秒后跳转主界面</h2>
+            <a href="/index">如无反应，请点击此处跳转</a>
+        </div>
+        <script>
+            setTimeout(function(){
+                window.location.replace("/index");
+            },5000)
+        </script>
+    </body>
+</html>

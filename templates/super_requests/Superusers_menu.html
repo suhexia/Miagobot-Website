@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta lang="zh">
+    <meta charset="utf-8">
+    <title>出云宫子bot——超管界面</title>
+    <script src="https://cdn.staticfile.org/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        #WelcomeForm {
+            transform: translateY(50px);
+        }
+    </style>
+</head>
+
+<body>
+    {% include '/MenuTemplates/SuperusersMenu.html' %}
+
+    <div class="FunctionSubmitTotal">
+        <div class="SubmitBackground"></div>
+        <div class="SingleFunctionForm show" id="WelcomeForm">
+            <h1>登录成功</h1>
+            <h2>请从左侧菜单处选择要使用的功能</h2>
+        </div>
+    </div>
+</body>
+
+</html>
